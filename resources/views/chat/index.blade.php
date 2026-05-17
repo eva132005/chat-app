@@ -35,7 +35,7 @@
             @endforeach
 
             <!-- Group Rooms -->
-            <p class="text-xs text-gray-400 uppercase mt-4 mb-3">Group Chats</p>
+            <p class="text-xs text-gray-400 uppercase mt-4 mb-3">Group Chats 👥</p>
             @foreach($rooms->where('type', 'group') as $room)
             <a href="{{ route('chat.room', $room) }}" 
                class="flex items-center gap-3 p-2 rounded hover:bg-gray-700 mb-1">
