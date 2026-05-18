@@ -1,58 +1,104 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Real-time Chat Application
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Deskripsi
+Real-time Chat Application adalah aplikasi web yang memungkinkan pengguna untuk berkomunikasi secara langsung (real-time) menggunakan teknologi WebSocket. Aplikasi ini dibangun menggunakan framework Laravel 13 dengan Laravel Reverb sebagai WebSocket server.
 
-## About Laravel
+## Fitur Utama
+- **User Authentication** : Pengguna dapat melakukan registrasi, login, dan logout
+- **Private Chat** : Pengguna dapat melakukan percakapan secara pribadi dengan pengguna lain
+- **Group Chat** : Pengguna dapat membuat grup dan melakukan percakapan bersama
+- **User Presence Tracking** : Sistem dapat mendeteksi status pengguna secara real-time (Online/Offline)
+- **Hapus Pesan** : Pengguna dapat menghapus pesan yang telah dikirim
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Teknologi yang Digunakan
+- **Framework** : Laravel 13
+- **Bahasa Pemrograman** : PHP 8.3
+- **Frontend** : Blade Template, Tailwind CSS
+- **WebSocket** : Laravel Reverb
+- **Database** : MySQL
+- **Tools** : Laragon, Composer, Node.js, Git
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Persyaratan Sistem
+- PHP >= 8.2
+- Composer
+- Node.js
+- MySQL
+- Laragon (disarankan)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Langkah-langkah Instalasi
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
+### 1. Clone Repository
+Buka terminal dan jalankan perintah berikut:
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/eva132005/chat-app.git
+cd chat-app
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 2. Install Dependencies PHP
+```bash
+composer install
+```
 
-## Contributing
+### 3. Install Dependencies Node.js
+```bash
+npm install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 4. Salin File Environment
+```bash
+cp .env.example .env
+```
 
-## Code of Conduct
+### 5. Generate Application Key
+```bash
+php artisan key:generate
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 6. Konfigurasi Database
+Buka file `.env` dan sesuaikan konfigurasi database:
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=chat_app
+DB_USERNAME=root
+DB_PASSWORD=
+### 7. Jalankan Migration Database
+```bash
+php artisan migrate
+```
 
-## Security Vulnerabilities
+### 8. Build Asset Frontend
+```bash
+npm run build
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 9. Menjalankan Aplikasi
+Buka 3 terminal secara bersamaan dan jalankan perintah berikut:
 
-## License
+**Terminal 1 - Web Server:**
+```bash
+php artisan serve
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Terminal 2 - WebSocket Server:**
+```bash
+php artisan reverb:start
+```
+
+**Terminal 3 - Queue Worker:**
+```bash
+php artisan queue:work
+```
+
+### 10. Akses Aplikasi
+Buka browser dan akses alamat berikut:http://localhost:8000
+## Cara Penggunaan
+1. Buka aplikasi di browser
+2. Klik **Register** untuk membuat akun baru
+3. Isi nama, email, dan password kemudian klik **Register**
+4. Setelah berhasil, akan diarahkan ke halaman utama chat
+5. Pilih nama pengguna di sidebar untuk memulai **Private Chat**
+6. Klik tombol **+ Buat Group** untuk membuat **Group Chat**
+7. Ketik pesan dan tekan **Enter** atau klik tombol **Kirim**
+8. Untuk menghapus pesan, klik tombol **✕** yang muncul di pojok pesan
+9. Status **Online/Offline** pengguna ditampilkan secara real-time di sidebar
