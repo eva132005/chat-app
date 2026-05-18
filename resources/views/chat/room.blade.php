@@ -10,10 +10,10 @@
 <body class="bg-gray-100 h-screen flex">
 
     <!-- Sidebar -->
-    <div class="w-72 bg-gray-800 text-white flex flex-col">
-        <div class="p-4 border-b border-gray-700">
-            <a href="{{ route('chat.index') }}" class="text-gray-400 hover:text-white text-sm">← Kembali</a>
-            <h1 class="text-xl font-bold mt-1">💬 Chat App</h1>
+    <div class="w-72 bg-white border-r border-gray-200 flex flex-col">
+        <div class="p-4 border-b border-gray-200">
+            <a href="{{ route('chat.index') }}" class="text-blue-500 hover:text-blue-700 text-sm">← Kembali</a>
+            <h1 class="text-xl font-bold text-gray-800 mt-1">💬 Chat App</h1>
         </div>
 
         <!-- Members -->
@@ -21,10 +21,10 @@
             <p class="text-xs text-gray-400 uppercase mb-3">Members</p>
             @foreach($members as $member)
             <div class="flex items-center gap-3 p-2 rounded mb-1">
-                <span class="w-2 h-2 rounded-full {{ $member->is_online ? 'bg-green-400' : 'bg-gray-500' }}"
+                <span class="w-2 h-2 rounded-full {{ $member->is_online ? 'bg-green-400' : 'bg-gray-300' }}"
                       id="status-{{ $member->id }}"></span>
                 <div>
-                    <p class="text-sm">{{ $member->name }}</p>
+                    <p class="text-sm text-gray-700">{{ $member->name }}</p>
                     <p class="text-xs text-gray-400" id="lastseen-{{ $member->id }}">
                         {{ $member->is_online ? 'Online' : ($member->last_seen ? 'Last seen ' . $member->last_seen->diffForHumans() : 'Offline') }}
                     </p>
@@ -40,7 +40,7 @@
         <!-- Header -->
         <div class="bg-white p-4 shadow flex items-center gap-3">
             <div>
-                <h2 class="font-semibold text-lg">
+                <h2 class="font-semibold text-lg text-gray-800">
                     {{ $room->type === 'group' ? $room->name : 'Private Chat' }}
                 </h2>
                 <p class="text-xs text-gray-500 uppercase">{{ $room->type }}</p>
@@ -173,7 +173,7 @@ window.addEventListener('load', function() {
             const dot = document.getElementById(`status-${e.user_id}`);
             const lastSeen = document.getElementById(`lastseen-${e.user_id}`);
             if (dot) {
-                dot.className = `w-2 h-2 rounded-full ${e.status === 'online' ? 'bg-green-400' : 'bg-gray-500'}`;
+                dot.className = `w-2 h-2 rounded-full ${e.status === 'online' ? 'bg-green-400' : 'bg-gray-300'}`;
             }
             if (lastSeen) {
                 lastSeen.textContent = e.status === 'online' ? 'Online' : 'Offline';
